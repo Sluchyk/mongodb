@@ -32,7 +32,7 @@ import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final UserServiceImpl userService;
-    private  final JwtUserDetailsService jwtUserDetailsService;
+    private final JwtUserDetailsService jwtUserDetailsService;
 
     private final AuthenticationManager authenticationManager;
 
@@ -42,7 +42,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         try {
             var creds = new ObjectMapper().readValue(req.getInputStream(), UserDto.class);
             Collection<? extends GrantedAuthority> authorities = jwtUserDetailsService.loadUserByUsername(creds.getUserName()).getAuthorities();
-            return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(creds.getUserName(), creds.getPassword(),authorities));
+            return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(creds.getUserName(), creds.getPassword(), authorities));
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }

@@ -1,5 +1,5 @@
 package com.example.mongodb.security;
-import com.example.mongodb.entity.Role;
+
 import static com.example.mongodb.security.SecurityConstants.LOGIN_URL;
 import static com.example.mongodb.security.SecurityConstants.SIGN_UP_URL;
 import com.example.mongodb.service.impl.JwtUserDetailsService;
@@ -36,12 +36,12 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/book/**").authenticated()
                 .antMatchers(HttpMethod.POST, "/book/save").hasAuthority("admin")
                 .antMatchers(HttpMethod.DELETE, "/book/delete/**").hasAuthority("admin")
-                .antMatchers(HttpMethod.PUT,"/book/rate").hasAuthority("user")
+                .antMatchers(HttpMethod.PUT, "/book/rate").hasAuthority("user")
 
 
                 .and()
-                .addFilter(new JWTAuthenticationFilter(userService,userDetailsService,authenticationManager()))
-                .addFilter(new JWTAuthorizationFilter(authenticationManager(),userDetailsService))
+                .addFilter(new JWTAuthenticationFilter(userService, userDetailsService, authenticationManager()))
+                .addFilter(new JWTAuthorizationFilter(authenticationManager(), userDetailsService))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 

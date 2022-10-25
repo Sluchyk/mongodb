@@ -7,7 +7,6 @@ import com.example.mongodb.exception.NotUniequeUserEmailException;
 import com.example.mongodb.exception.NotUniequeUserException;
 import com.example.mongodb.repository.UserRepository;
 import com.example.mongodb.service.UserService;
-import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

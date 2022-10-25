@@ -9,13 +9,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class UserDto {
-    private  String id;
+    private String id;
     @NotBlank
-    private  String userName;
+    private String userName;
     @NotBlank
-    private  String password;
+    private String password;
     @NotBlank
     @Email
-    private  String email;
+    private String email;
     private Role role;
 }

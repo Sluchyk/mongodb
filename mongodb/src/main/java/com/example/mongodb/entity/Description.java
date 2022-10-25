@@ -8,5 +8,4 @@ public class Description {
     private boolean isLiked;
 
 
-
 }

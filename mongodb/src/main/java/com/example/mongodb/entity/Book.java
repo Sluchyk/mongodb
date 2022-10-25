@@ -16,14 +16,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 public class Book {
     @Id
-    private  String id;
+    private String id;
     @Indexed(unique = true)
-    private  String name;
+    private String name;
     private String author;
-    private  Category category;
-    private  Description description;
-    private  Long rate=0L;
-    private Long count=1L;
+    private Category category;
+    private Description description;
+    private Long rate = 0L;
+    private Long count = 1L;
 
     @Override
     public boolean equals(Object o) {

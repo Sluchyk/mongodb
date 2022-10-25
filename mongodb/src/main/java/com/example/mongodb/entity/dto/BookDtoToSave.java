@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Data
 public class BookDtoToSave {
-    private  String id;
-    private  String name;
+    private String id;
+    private String name;
     private String author;
     private Category category;
     private Description description;

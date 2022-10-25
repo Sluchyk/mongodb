@@ -18,23 +18,26 @@ import org.springframework.security.core.userdetails.UserDetails;
 @NoArgsConstructor
 public class User {
     @Id
-    private  String id;
+    private String id;
     @NotBlank
     @Indexed(unique = true)
-    private  String userName;
+    private String userName;
     @NotBlank
-    private  String password;
+    private String password;
     @NotBlank
     @Email
     private String email;
-    private  Role role;
-    public User(String userName, String password, String email,Role role) {
+    private Role role;
+
+    public User(String userName, String password, String email, Role role) {
         this.userName = userName;
         this.password = password;
         this.email = email;
         this.role = role;
     }
+
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.name());
-        return Collections.singletonList(authority);}
+        return Collections.singletonList(authority);
+    }
 }

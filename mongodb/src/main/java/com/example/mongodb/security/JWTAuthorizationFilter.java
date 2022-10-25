@@ -6,14 +6,12 @@ import static com.example.mongodb.security.SecurityConstants.HEADER_STRING;
 import static com.example.mongodb.security.SecurityConstants.SECRET;
 import static com.example.mongodb.security.SecurityConstants.TOKEN_PREFIX;
 import com.example.mongodb.service.impl.JwtUserDetailsService;
+import java.io.IOException;
 import java.util.Collection;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.util.ArrayList;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,10 +19,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
-    private   JwtUserDetailsService jwtUserDetailsService;
-    public JWTAuthorizationFilter(AuthenticationManager authManager,JwtUserDetailsService jwtUserDetailsService) {
+    private JwtUserDetailsService jwtUserDetailsService;
+
+    public JWTAuthorizationFilter(AuthenticationManager authManager, JwtUserDetailsService jwtUserDetailsService) {
         super(authManager);
-        this.jwtUserDetailsService=jwtUserDetailsService;
+        this.jwtUserDetailsService = jwtUserDetailsService;
     }
 
     @Override

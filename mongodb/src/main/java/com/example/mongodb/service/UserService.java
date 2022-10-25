@@ -1,6 +1,5 @@
 package com.example.mongodb.service;
 
-import com.example.mongodb.entity.User;
 import com.example.mongodb.entity.dto.UserDto;
 
 public interface UserService {

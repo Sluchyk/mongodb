@@ -1,6 +1,5 @@
 package com.example.mongodb.service.impl;
 
-import java.util.Collections;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
