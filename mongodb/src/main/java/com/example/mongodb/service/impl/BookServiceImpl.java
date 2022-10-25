@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 public class BookServiceImpl implements BookService {
     private final BookRepository bookRepository;
     private final ModelMapper modelMapper;
-
     public String saveBook(BookDtoToSave bookDtoToSave) {
         try {
             doesBookIsUnique(bookDtoToSave.getName());
@@ -35,7 +34,8 @@ public class BookServiceImpl implements BookService {
     @Override
     public String updateBook(BookDto bookDto) {
         try {
-            Book book = doesBookExist(bookDto.getName());
+            doesBookExist(bookDto.getName());
+            Book book=bookRepository.findByName(bookDto.getName());
             long rate = (book.getRate() + bookDto.getRate()) / book.getCount();
             book.setRate(rate);
             book.setCount(book.getCount() + 1);
@@ -49,27 +49,24 @@ public class BookServiceImpl implements BookService {
     @Override
     public String deleteBook(String name) {
         try {
-            Book book = doesBookExist(name);
-            bookRepository.delete(book);
+            doesBookExist(name);
+            bookRepository.delete(bookRepository.findByName(name));
             return "book:" + name + "was deleted";
         } catch (NotFoundBookException e) {
             return "book with " + name + "doesnt exist";
         }
     }
 
-
-    private Book doesBookExist(String name) throws NotFoundBookException {
+    private void doesBookExist(String name) throws NotFoundBookException {
         Book book;
         book = bookRepository.findByName(name);
         if (book == null) throw new NotFoundBookException("");
-        return book;
     }
 
-    private Book doesBookIsUnique(String name) throws NotUniqueBookException {
+    private void doesBookIsUnique(String name) throws NotUniqueBookException {
         Book book;
         book = bookRepository.findByName(name);
         if (book != null) throw new NotUniqueBookException("");
-        return book;
     }
 
 }
